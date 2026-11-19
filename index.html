@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Start Here | Donna Nuqui</title>
+<meta name="description" content="Not sure if you need insurance, or know you need it but don't know where to start? A free 2-minute guide for Filipino families by Donna Nuqui, Sun Life financial advisor.">
+<meta property="og:title" content="Start Here | Donna Nuqui">
+<meta property="og:description" content="A free 2-minute guide: check if you're financially ready, or find the plan that fits your life stage.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://start.donnanuqui.com/">
+
+<!-- Google tag (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1TXKES216M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1TXKES216M');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #F6F2EB; }
+
+  .pf-wrap {
+    /* Same tokens as plans.donnanuqui.com */
+    --bg: #F6F2EB; --card: #FFFFFF; --ink: #16150F; --muted: #4F4C45; --line: #E6DFD2; --soft: #EFE9DF;
+    --gold: #B89C6E; --goldd: #8B6F3F; --goldl: #F2EAD9;
+    --solo: #5F7F5A; --solol: #E3EADF;
+    --bread: #B4603F; --breadl: #F5E3DA;
+    --couple: #4E7090; --couplel: #E1E8EF;
+    --family: #8B6F3F; --familyl: #F2EAD9;
+    --sandwich: #2F7A78; --sandwichl: #DCEDEC;
+    --legacy: #6E5E84; --legacyl: #ECE7F1;
+    /* result tiers (muted earth tones) */
+    --good: #3f5c46; --goodl: #eaf0ec;
+    --okay: #8b6f3f; --okayl: #f5eee0;
+    --low: #a1522f; --lowl: #fbeee6;
+    --urgent: #7c3434; --urgentl: #f8eae8;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: var(--bg); color: var(--ink); font-family: var(--sans);
+    font-size: 16px; line-height: 1.6; min-height: 100vh;
+    padding: 124px max(20px, env(safe-area-inset-right, 0px)) 64px max(20px, env(safe-area-inset-left, 0px));
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* ---------- Top nav (matches plans site) ---------- */
+  .pf-topnav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: rgba(246, 242, 235, .94); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px max(24px, 5vw);
+  }
+  .pf-nav-logo {
+    font-family: var(--serif); font-size: 15px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none; font-weight: 500;
+  }
+  .pf-nav-links { list-style: none; display: flex; gap: 28px; }
+  .pf-nav-links a {
+    font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+    text-decoration: none; transition: color .15s;
+  }
+  .pf-nav-links a:hover, .pf-nav-links a.on { color: var(--ink); font-weight: 600; }
+  .pf-nav-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 6px; }
+  .pf-nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--ink); margin: 4px 0; }
+
+  /* ---------- Layout ---------- */
+  .st-inner { max-width: 760px; margin: 0 auto; }
+  .st-screen { display: none; animation: fade .35s ease; }
+  .st-screen.on { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .pf-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--goldd); margin-bottom: 14px;
+  }
+  h1, .st-h {
+    font-family: var(--serif); font-weight: 500; color: var(--ink);
+    font-size: clamp(38px, 6.4vw, 64px); line-height: 1.08; letter-spacing: -.01em; margin-bottom: 18px;
+  }
+  h1 em, .st-h em {
+    font-style: italic; font-weight: 600; color: #7A5626; padding: 0 5px;
+    background: linear-gradient(transparent 55%, var(--goldl) 55%);
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+  .st-h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 4.4vw, 40px); line-height: 1.15; margin-bottom: 12px; }
+  .st-h2 em { font-style: italic; color: #7A5626; }
+  .st-lede { font-size: 15px; color: var(--muted); max-width: 560px; margin-bottom: 32px; }
+
+  /* ---------- Path / persona cards ---------- */
+  .st-paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .st-paths.two { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .st-path {
+    --pc: var(--gold); --pcl: var(--goldl);
+    background: var(--card); border: 1px solid var(--line); border-top: 3px solid var(--pc);
+    padding: 20px 18px 22px; text-align: left; cursor: pointer; font-family: var(--sans); color: var(--ink);
+    transition: transform .15s, box-shadow .15s, background .15s; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; width: 100%;
+  }
+  .st-path:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(22, 21, 15, .07); }
+  .st-path.sel { background: var(--pcl); }
+  .st-path .ic {
+    width: 38px; height: 38px; border-radius: 50%; background: var(--pcl); color: var(--pc);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
+  }
+  .st-path .ic svg { width: 18px; height: 18px; }
+  .st-path .t { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.2; margin-bottom: 6px; display: block; }
+  .st-path .t em { font-style: italic; font-weight: 500; color: var(--pc); }
+  .st-path .d { font-size: 13px; color: var(--muted); line-height: 1.5; display: block; }
+  .st-path .go { display: block; margin-top: 14px; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--pc); }
+
+  .p-solo { --pc: var(--solo); --pcl: var(--solol); }
+  .p-bread { --pc: var(--bread); --pcl: var(--breadl); }
+  .p-couple { --pc: var(--couple); --pcl: var(--couplel); }
+  .p-family { --pc: var(--family); --pcl: var(--familyl); }
+  .p-sandwich { --pc: var(--sandwich); --pcl: var(--sandwichl); }
+  .p-legacy { --pc: var(--legacy); --pcl: var(--legacyl); }
+
+  .st-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: -14px 0 30px; font-size: 13px; color: var(--muted); }
+  .st-meta span::before { content: '— '; color: var(--gold); }
+  .st-back { display: inline-block; margin-bottom: 22px; font-size: 13px; color: var(--muted); background: none; border: 0; cursor: pointer; font-family: var(--sans); padding: 0; }
+  .st-back:hover { color: var(--ink); }
+  .st-age { display: flex; gap: 10px; max-width: 420px; }
+  .st-age input {
+    flex: 1; min-width: 0; font-family: var(--serif); font-size: 30px; font-weight: 600; text-align: center;
+    color: var(--ink); background: var(--card); border: 1px solid var(--line); padding: 10px 14px;
+  }
+  .st-age input:focus { outline: 2px solid var(--gold); outline-offset: -1px; }
+  .st-err { color: #B3412E; font-size: 14px; font-weight: 600; min-height: 1.4em; margin-top: 10px; }
+  .st-alt { margin-top: 26px; font-size: 14px; color: var(--muted); }
+  .st-alt a, .st-link { color: var(--goldd); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; background: none; border: 0; font: inherit; }
+
+  /* ---------- Buttons ---------- */
+  .pf-btn {
+    display: inline-block; text-align: center; text-decoration: none; cursor: pointer;
+    background: var(--ink); color: var(--bg); border: 1px solid var(--ink);
+    font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+    padding: 16px 26px; transition: background .15s, opacity .15s;
+  }
+  .pf-btn:hover { background: #000; }
+  .pf-btn:disabled { opacity: .3; cursor: not-allowed; }
+  .pf-btn.ghost { background: transparent; color: var(--ink); }
+  .pf-btn.ghost:hover { background: var(--goldl); }
+  .pf-btn.block { display: block; width: 100%; }
+
+  /* ---------- Quiz ---------- */
+  .st-card { background: var(--card); border: 1px solid var(--line); padding: 36px 32px; }
+  .st-progress { margin-bottom: 28px; }
+  .st-progress-info { display: flex; justify-content: space-between; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .st-track { height: 3px; background: var(--soft); }
+  .st-fill { height: 100%; background: var(--gold); width: 0; transition: width .4s ease; }
+  .st-chip {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; padding: 5px 12px; background: var(--pcl); color: var(--pc); margin-bottom: 18px;
+  }
+  .st-q { font-family: var(--serif); font-size: clamp(24px, 3.4vw, 30px); font-weight: 500; line-height: 1.25; margin-bottom: 24px; }
+  .st-opts { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .st-opt {
+    display: flex; align-items: flex-start; gap: 14px; width: 100%; text-align: left; cursor: pointer;
+    background: var(--card); border: 1px solid var(--line); padding: 14px 16px; font-family: var(--sans);
+    font-size: 15px; line-height: 1.45; color: var(--ink); transition: border-color .15s, background .15s;
+  }
+  .st-opt:hover { border-color: var(--gold); }
+  .st-opt.sel { border-color: var(--gold); background: var(--goldl); }
+  .st-opt .k {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--muted);
+  }
+  .st-opt.sel .k { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .st-nav { display: flex; gap: 10px; }
+  .st-nav .pf-btn { flex: 1; padding: 14px; }
+
+  /* ---------- Result ---------- */
+  .st-result-head { display: flex; align-items: center; gap: 22px; margin-bottom: 22px; flex-wrap: wrap; }
+  .st-score { width: 104px; height: 104px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+  .st-score b { font-family: var(--serif); font-size: 36px; font-weight: 600; line-height: 1; }
+  .st-score small { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; margin-top: 4px; }
+  .st-desc { font-size: 15px; color: var(--muted); margin-bottom: 24px; }
+  .st-pain { border-left: 3px solid; padding: 18px 20px; margin-bottom: 18px; }
+  .st-label { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 10px; }
+    .st-pain p:not(.st-label) { font-size: 14px; line-height: 1.6; padding: 3px 0 3px 18px; position: relative; }
+  .st-pain p:not(.st-label)::before { content: '→'; position: absolute; left: 0; }
+  .st-snap { background: var(--bg); border: 1px solid var(--line); padding: 18px 20px; margin-bottom: 28px; }
+  .st-snap div { display: flex; align-items: center; gap: 10px; font-size: 14px; padding: 4px 0; }
+  .st-snap i { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+  .st-next { background: var(--ink); color: var(--bg); padding: 30px 28px; margin-bottom: 18px; }
+  .st-next .pf-eyebrow { color: var(--gold); }
+  .st-next .st-h2 { color: var(--bg); font-size: clamp(26px, 3.8vw, 34px); }
+  .st-next .st-h2 em { color: var(--gold); }
+  .st-next p.sub { color: #CFC8BA; font-size: 14px; margin-bottom: 22px; }
+  .st-next .pf-btn { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .st-next .pf-btn:hover { background: #cdb48a; }
+  .st-note { font-size: 13px; color: var(--muted); text-align: center; margin: 10px 0 0; }
+
+  .st-contact { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 24px; }
+  .st-contact-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .st-contact a {
+    display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line);
+    color: var(--ink); text-decoration: none; font-size: 14px; transition: border-color .15s;
+  }
+  .st-contact a:hover { border-color: var(--gold); }
+  .st-contact svg { width: 17px; height: 17px; flex-shrink: 0; }
+  .st-restart { margin: 26px 0 0; font-size: 13px; color: var(--muted); text-align: center; }
+
+  .pf-foot { max-width: 760px; margin: 56px auto 0; padding-top: 22px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  @media (max-width: 760px) {
+    .pf-wrap { padding-top: 96px; }
+    .pf-nav-toggle { display: block; }
+    .pf-nav-links {
+      display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
+      background: var(--bg); border-bottom: 1px solid var(--line); padding: 8px max(24px, 5vw) 16px;
+    }
+    .pf-nav-links.open { display: flex; }
+    .pf-nav-links a { display: block; padding: 10px 0; }
+    .st-card { padding: 26px 18px; }
+    .st-next { padding: 26px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="pf-wrap">
+
+  <nav class="pf-topnav">
+    <a class="pf-nav-logo" href="https://me.donnanuqui.com/">Donna Nuqui</a>
+    <button class="pf-nav-toggle" aria-label="Menu" onclick="document.querySelector('.pf-nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <ul class="pf-nav-links">
+      <li><a href="https://me.donnanuqui.com/#about">Meet Donna</a></li>
+      <li><a href="https://me.donnanuqui.com/#services">Services</a></li>
+      <li><a href="https://me.donnanuqui.com/#tools">Tools</a></li>
+      <li><a href="https://plans.donnanuqui.com">Plans</a></li>
+      <li><a href="https://me.donnanuqui.com/#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="st-inner">
+
+    <!-- ========== 0. FORK ========== -->
+    <section class="st-screen" id="s-fork">
+      <p class="pf-eyebrow">Start here · 2 minutes</p>
+      <h1>Where are you <em>starting from?</em></h1>
+      <p class="st-lede">Pick the one that sounds most like you right now. Either way, you'll know your next step in about 2 minutes — free, private, no pressure.</p>
+      <div class="st-paths two">
+        <button class="st-path p-sandwich" onclick="goPath('check')">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></span>
+          <span class="t">I'm not sure <em>if I need it</em></span>
+          <span class="d">Find out who depends on you and how ready you really are. 6 honest questions, instant result.</span>
+          <span class="go">Check my readiness →</span>
+        </button>
+        <button class="st-path p-family" onclick="goPath('plans')">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span>
+          <span class="t">I know I need it, <em>but where do I start?</em></span>
+          <span class="d">Tell me your age, health and budget — see the plans that actually fit you, with estimated premiums.</span>
+          <span class="go">Show me my plans →</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ========== 1. WHO DEPENDS ON YOU (persona) ========== -->
+    <section class="st-screen" id="s-persona">
+      <button class="st-back" onclick="show('s-fork')">← Back to start</button>
+      <p class="pf-eyebrow">Financial readiness check · Step 1</p>
+      <h1>First: <em>who depends on your income?</em></h1>
+      <p class="st-lede">Your life stage decides what "ready" means. Pick the one that sounds most like you right now — your questions and result will be personalized.</p>
+      <div class="st-paths" id="persona-grid"></div>
+      <p class="st-alt">Already know you need coverage? <a onclick="goPath('plans')">Go straight to plans →</a></p>
+    </section>
+
+    <!-- ========== 1b. CURRENT STATUS (who earns) ========== -->
+    <section class="st-screen" id="s-status">
+      <button class="st-back" onclick="show('s-persona')">← Back</button>
+      <p class="pf-eyebrow">Financial readiness check · Step 2</p>
+      <h1>Right now, <em>who brings in the income?</em></h1>
+      <p class="st-lede">This tells me where the risk sits in your household.</p>
+      <div class="st-paths" id="status-grid"></div>
+    </section>
+
+    <!-- ========== 1c. AGE ========== -->
+    <section class="st-screen" id="s-age">
+      <button class="st-back" onclick="ageBack()">← Back</button>
+      <p class="pf-eyebrow">Financial readiness check · One quick thing</p>
+      <h1>And <em>how old are you?</em></h1>
+      <p class="st-lede">Your age decides which plans you can still get and how much they cost. I'll use it to price your best match.</p>
+      <div class="st-age">
+        <input type="number" id="age-in" inputmode="numeric" min="18" max="100" placeholder="e.g. 32" aria-label="Your age">
+        <button class="pf-btn" onclick="submitAge()">Continue →</button>
+      </div>
+      <p class="st-err" id="age-err" role="alert"></p>
+    </section>
+
+    <!-- ========== 2. QUIZ ========== -->
+    <section class="st-screen" id="s-quiz">
+      <div class="st-card">
+        <div class="st-progress">
+          <div class="st-progress-info"><span id="q-count">Question 1 of 6</span><span id="q-pct">0%</span></div>
+          <div class="st-track"><div class="st-fill" id="q-fill"></div></div>
+        </div>
+        <div class="st-chip" id="q-chip"></div>
+        <p class="st-q" id="q-text"></p>
+        <div class="st-opts" id="q-opts"></div>
+        <div class="st-nav">
+          <button class="pf-btn ghost" id="q-prev" onclick="prevQ()">← Back</button>
+          <button class="pf-btn" id="q-next" onclick="nextQ()" disabled>Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 3. RESULT ========== -->
+    <section class="st-screen" id="s-result"></section>
+
+  </main>
+
+  <footer class="pf-foot">
+    This check is for educational purposes only and is not financial advice. Product recommendations are subject to underwriting and the actual policy contract. Donna Nuqui is a licensed Sun Life financial advisor.
+  </footer>
+</div>
+
+<script>
+  /* ================= Config ================= */
+  var PLANS_URL = 'https://plans.donnanuqui.com/';
+  var MESSENGER_URL = 'https://m.me/financial.advisor.donna.n';
+
+  /* ================= Tracking (GA4) ================= */
+  function track(name, params) {
+    try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
+  }
+  // Carry UTM / src params from the incoming link into every outbound link,
+  // so a lead that started from a DM is still attributed to it on the plans page.
+  var incoming = new URLSearchParams(location.search);
+  function withTracking(url, extra) {
+    var u = new URL(url);
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'src'].forEach(function (k) {
+      if (incoming.get(k)) u.searchParams.set(k, incoming.get(k));
+    });
+    Object.keys(extra || {}).forEach(function (k) { u.searchParams.set(k, extra[k]); });
+    return u.toString();
+  }
+
+  /* ================= Personas ================= */
+  var ICONS = {
+    family: '<path d="M7 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM17 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM12 15a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM3 20c0-2.5 1.8-4.5 4-4.5M21 20c0-2.5-1.8-4.5-4-4.5M8.5 20c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5"/>',
+    couple: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M9 11.5h6"/>',
+    home: '<path d="M3 11 12 4l9 7M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/>',
+    parent: '<circle cx="9" cy="7" r="3"/><circle cx="17" cy="11" r="2"/><path d="M3.5 20c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5M14.5 20c0-2 1.1-3.5 2.5-3.5s2.5 1.5 2.5 3.5"/>',
+    sandwich: '<circle cx="6" cy="7" r="2.2"/><circle cx="12" cy="9" r="2.2"/><circle cx="18" cy="13" r="1.8"/><path d="M2.5 20c0-2.2 1.6-4 3.5-4s3.5 1.8 3.5 4M8.5 20c0-2.2 1.6-4 3.5-4s3.5 1.8 3.5 4M15.5 20c0-1.8 1.1-3.2 2.5-3.2s2.5 1.4 2.5 3.2"/>',
+    solo: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/>'
+  };
+  ICONS.grown = '<circle cx="12" cy="12" r="3.5"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/>';
+  ICONS.support = '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M8.5 12.5 11 10l2 2 2.5-2.5"/>';
+
+  // Step 1 — same six life stages as plans.donnanuqui.com/start/
+  var LIFE = {
+    solo:     { t: 'Just me', d: 'Single, and no one depends on my income yet', cls: 'p-solo', icon: 'solo', set: 'solo' },
+    family:   { t: 'My family <em>(spouse and kids)</em>', d: 'My spouse and kids depend on me. Single parents, this is you too.', cls: 'p-family', icon: 'family',
+                status: [
+                  { set: 'dual_kids', t: 'We <em>both</em> work', d: 'Two incomes keep our family running.' },
+                  { set: 'breadwinner', t: "I'm the <em>main earner</em>", d: 'My spouse and kids mostly depend on my income.' },
+                  { set: 'single_parent', t: "I'm a <em>single parent</em>", d: 'I run the household on one income — mine.' }
+                ] },
+    couple:   { t: 'My spouse or partner', d: 'Married or living together, no kids yet', cls: 'p-couple', icon: 'couple',
+                status: [
+                  { set: 'dual_nokids', t: 'We <em>both</em> work', d: 'Two incomes, building our life together.' },
+                  { set: 'breadwinner', t: "I'm the <em>main earner</em>", d: 'My partner mostly depends on my income.' }
+                ] },
+    sandwich: { t: 'My family <em>and</em> my parents', d: 'My spouse and kids depend on me, and I still help support Mama and Papa', cls: 'p-sandwich', icon: 'sandwich', set: 'sandwich' },
+    support:  { t: 'My parents or siblings', d: 'Single, no kids yet, and I help support Mama, Papa or my siblings', cls: 'p-bread', icon: 'support', set: 'provider' },
+    grown:    { t: 'My kids are grown', d: "My kids are on their own now. I'm thinking about retirement and what I'll leave behind", cls: 'p-legacy', icon: 'grown', set: 'legacy' }
+  };
+
+  // Question sets (label shown on the chip + slug sent to GA4 / plans)
+  var PERSONAS = {
+    dual_kids:     { label: 'Dual-income parents', slug: 'dual-income-parents' },
+    dual_nokids:   { label: 'Dual income, no kids', slug: 'dual-income-no-kids' },
+    breadwinner:   { label: 'Main earner', slug: 'breadwinner' },
+    single_parent: { label: 'Single parent', slug: 'single-parent' },
+    sandwich:      { label: 'Sandwich generation', slug: 'sandwich-generation' },
+    solo:          { label: 'Just me', slug: 'solo-living' },
+    provider:      { label: 'Supporting my family', slug: 'family-provider' },
+    legacy:        { label: 'Kids are grown', slug: 'kids-grown' }
+  };
+
+  /* ================= Questions (unchanged from the original check) ================= */
+  var QS = {
+    dual_kids: [
+      { text: "If one of you lost your job tomorrow, could your family keep up with all the bills?", options: ["Yes — we could manage comfortably on one income for a while", "We'd cope, but it would be tight", "We'd start to struggle within the first month", "We're fully dependent on both salaries — it would be immediate trouble"] },
+      { text: "Be honest — is your family's lifestyle built around BOTH incomes?", options: ["No — we live on one income and save or invest the other", "Mostly, but we could cut back if we had to", "Yes — both salaries are fully spent every month", "Yes — and we still lean on credit to get by"] },
+      { text: "Are BOTH of you protected with life insurance — not just one of you?", options: ["Yes — both of us are properly covered", "Only one of us is actually covered", "We only have minimal coverage through work", "Neither of us has real coverage"] },
+      { text: "Do you have a dedicated fund growing for your kids' education?", options: ["Yes — we invest for their education consistently", "We've started, but it's small or irregular", "We keep meaning to start", "Nothing set aside for it yet"] },
+      { text: "If one parent had to stop working to care for a child or family emergency, what happens?", options: ["We've planned for it — we'd be fine", "We'd adjust, but lose our savings momentum", "It would put us under serious financial strain", "It would push our family into crisis"] },
+      { text: "Are you BOTH actively building retirement — or assuming the other is handling it?", options: ["Yes — we both contribute to a clear retirement plan", "One of us is; the other really isn't", "We talk about it but haven't set anything up", "Neither of us has started"] }
+    ],
+    dual_nokids: [
+      { text: "You likely have more disposable income than most — do you have an emergency fund to match?", options: ["Yes — 6 months or more set aside", "Some savings, but less than 3 months", "Very little — most of it gets spent", "No real emergency fund at all"] },
+      { text: "Two incomes, no kids — where is the extra money actually going?", options: ["We invest and grow it deliberately", "We save a bit and spend the rest on lifestyle", "Mostly lifestyle — travel, dining, upgrades", "We honestly have no idea — it just disappears"] },
+      { text: "If something happened to one of you, could the other handle shared debts and expenses alone?", options: ["Yes — we're each protected and could manage", "It would be hard, but survivable", "We'd be in real financial difficulty", "No — we're fully reliant on both incomes and have no protection"] },
+      { text: "Are you building real wealth — investments, property — or just enjoying the income?", options: ["Yes — we're consistently building assets", "We've started, but not seriously", "We keep planning to, someday", "Not really — we mostly just spend it"] },
+      { text: "Whether or not you want kids, are you financially prepared for the big life changes ahead?", options: ["Yes — we plan ahead for whatever comes", "Somewhat — we'd figure it out", "Not really — we mostly live in the present", "No — a big change would catch us off guard"] },
+      { text: "It's easy to feel ‘we're fine’ on two incomes — but is your retirement actually on track?", options: ["Yes — we both invest steadily for retirement", "We've started, but could do much more", "We assume we'll sort it out later", "No retirement plan at all"] }
+    ],
+    breadwinner: [
+      { text: "Do you have an emergency fund that can cover your whole household?", options: ["Yes — 3 to 6 months of household expenses", "I have some but not enough for the whole family", "Not yet — I'm working on it", "No emergency fund at all"] },
+      { text: "If you lost your income today, how long could your family survive financially?", options: ["More than 6 months", "3 to 6 months", "Less than 3 months", "Less than a month — we'd be in trouble immediately"] },
+      { text: "Does your family have life insurance protection in case something happens to you?", options: ["Yes — they're fully covered", "Some coverage but it may not be enough", "I'm planning to get one soon", "No coverage — my family would have nothing"] },
+      { text: "Are you actively investing or growing your money outside of your salary?", options: ["Yes — I invest consistently", "I've started but not consistently", "I've been thinking about it", "Not yet — all my income goes to expenses"] },
+      { text: "Do you have a retirement plan — or will your kids need to support you someday?", options: ["I have a solid retirement plan in place", "I have a rough idea but no concrete plan", "I think about it but haven't started", "No plan — I'm relying on my kids or family"] },
+      { text: "If something happened to you tomorrow, what would happen to your family?", options: ["They'd be okay — everything is planned and protected", "They'd manage but there would be serious gaps", "It would be very difficult for them", "They would have nothing to fall back on"] }
+    ],
+    single_parent: [
+      { text: "Since you are the single source of income, do you have a personal backup fund for household expenses?", options: ["Yes — 6 months or more saved up safely", "I have some savings but it wouldn't last past a month or two", "I have very small fallback savings", "No emergency fund at all"] },
+      { text: "If your income stopped unexpectedly tomorrow, how long could your kids survive comfortably?", options: ["More than 6 months safely", "3 to 6 months", "Less than 3 months", "Less than a single month — we would be in immediate crisis"] },
+      { text: "Do you have an active life insurance plan assigned to explicitly guard your children's future?", options: ["Yes — they are completely covered and fully guarded", "I have some minor coverage but it wouldn't replace my full path", "I'm looking into plans right now", "No active coverage setup at all"] },
+      { text: "Are you actively preparing or investing dedicated funds for your kids' college education?", options: ["Yes — I invest consistently for their school path", "I have small bits stored away but not consistently", "I want to start but struggle to find surplus funds", "Not yet started at all"] },
+      { text: "Who will take care of your children financially if you get unexpectedly sick or disabled?", options: ["I have disability income protection and health coverage ready", "Family might help out but it would put a massive strain on them", "I have no idea who could absorb that weight", "We would have completely nothing to rely on"] },
+      { text: "Are you currently investing out of your single income toward your own personal retirement?", options: ["Yes — I build my retirement fund alongside handling family paths", "I prioritize my children entirely; my retirement is heavily delayed", "I plan to start once the children grow older", "No retirement plan built yet"] }
+    ],
+    sandwich: [
+      { text: "Do you have an emergency fund — for yourself, not just your family?", options: ["Yes — I have 3 to 6 months set aside", "I have some savings but it's mostly for family needs", "Very little — emergencies usually wipe me out", "No emergency fund at all"] },
+      { text: "Between your kids' needs and your parents' needs — where does your money actually go?", options: ["I've budgeted for both AND still save for myself", "I cover both but nothing is left for me", "I struggle to cover both every month", "Most months I'm running on empty"] },
+      { text: "Do you have life insurance or financial protection in place for yourself?", options: ["Yes — I'm covered", "I have some but not enough", "Planning to get one soon", "None — I've been too focused on everyone else"] },
+      { text: "Are you investing anything for your OWN future — not just your family's?", options: ["Yes — I invest regularly for myself", "Occasionally when there's something left", "I've been meaning to start", "No — everything goes to the family"] },
+      { text: "Have you thought about who will take care of YOU when you retire?", options: ["Yes — I have a retirement plan and I'm building it", "I've thought about it but haven't started", "Rarely — I'm too focused on surviving today", "I haven't had the chance to think that far ahead"] },
+      { text: "If you got sick or couldn't work for 3 months — what would happen to everyone depending on you?", options: ["We'd be okay — I have coverage and savings", "It would be tight but manageable", "It would be a crisis for the whole family", "Everyone would be in serious trouble"] }
+    ],
+    solo: [
+      { text: "Do you have a personal emergency fund?", options: ["Yes — 3 to 6 months of my own expenses", "I have some savings but not enough", "Not yet — still building it", "No emergency fund at all"] },
+      { text: "Do you have health insurance of your own — not just your company HMO?", options: ["Yes — my own health plan", "Only my company HMO", "Just PhilHealth", "None at all"] },
+      { text: "If a serious illness kept you from working for months, what would pay your bills?", options: ["A health plan that pays me cash, on top of my HMO", "My savings, for a few months", "Nothing — my HMO only covers the hospital", "I'd have to borrow or ask family"] },
+      { text: "Are you actively investing or growing your money?", options: ["Yes — I invest regularly", "I've started but I'm not consistent", "I've been thinking about it", "Not yet — I don't know where to start"] },
+      { text: "Since there's no one to fall back on — do you have a financial plan for your future?", options: ["Yes — I have a clear plan and I'm executing it", "I have a rough idea but nothing solid", "I know I should but haven't started", "No plan yet — I take it day by day"] },
+      { text: "Be honest — are you spending freely because there's no one watching?", options: ["No — I'm intentional about every peso I spend", "Mostly disciplined but I have weak moments", "I tend to spend freely and save whatever's left", "Yes — I spend without much thought about tomorrow"] }
+    ],
+    provider: [
+      { text: "If you stopped earning tomorrow, who would cover your parents' or siblings' needs?", options: ["Someone else could step in — I've planned for it", "Another sibling could help, but it would be hard", "No one — it all falls on me", "They'd have nothing to fall back on"] },
+      { text: "Do you have an emergency fund for yourself — separate from what you send home?", options: ["Yes — 3 to 6 months of my own expenses", "Some, but it often goes to family needs", "Very little — what I send home always comes first", "No emergency fund at all"] },
+      { text: "If one of your parents got hospitalized, how would the bill be paid?", options: ["They have health coverage, plus savings set aside", "Partly savings, the rest we'd have to borrow", "We'd have to borrow or loan almost all of it", "I honestly don't know"] },
+      { text: "Do you have life or health protection for yourself?", options: ["Yes — my own plan", "Only what my company gives", "Planning to get one soon", "None at all"] },
+      { text: "Are you saving or investing for your OWN future — your own home, your own family someday?", options: ["Yes — regularly", "Only when there's something left", "I want to, but there's never extra", "No — everything goes to the family"] },
+      { text: "Do you have a set limit on how much you give, so you can still build for yourself?", options: ["Yes — family support has a clear budget", "Roughly, but I often go over", "Not really — I give whatever is asked", "No — and I'm starting to feel the strain"] }
+    ],
+    legacy: [
+      { text: "Now that the kids are on their own, is your retirement fund on track?", options: ["Yes — on track for the retirement I want", "I've started, but I'm behind", "I'm mostly counting on SSS/GSIS and my kids", "No retirement fund yet"] },
+      { text: "If you stopped working today, how long could your savings support your lifestyle?", options: ["10 years or more", "A few years", "Less than a year", "I'd depend on my kids right away"] },
+      { text: "Will your health coverage still protect you as you get older?", options: ["Yes — I have my own plan, not just a company HMO", "Only my company HMO, which ends when I retire", "PhilHealth only", "No health coverage"] },
+      { text: "If you got seriously ill, would the hospital bills fall on your kids?", options: ["No — I have coverage and funds set aside", "Some of it would fall on them", "Most of it would", "Yes, all of it"] },
+      { text: "Have you planned what you'll leave behind — and how it passes to your family?", options: ["Yes — protection, beneficiaries and documents are in order", "I have assets but no clear plan to pass them on", "I've thought about it but nothing is set", "Not yet"] },
+      { text: "Is your money still working for you — or just sitting in the bank?", options: ["It's invested and growing", "Some is invested, most is in savings", "Mostly sitting in savings", "I don't have much set aside"] }
+    ]
+  };
+
+  /* ================= Results (unchanged copy) ================= */
+  var RESULTS = {
+    dual_kids: {
+      high: { level: "Your family is well-protected on both fronts", desc: "Two incomes, both earners protected, and a real plan for your kids — you've built genuine resilience. The goal now is keeping it optimized as your family and your costs grow.", pain: [], items: ["One-income survival: cushioned ✓", "Both earners insured ✓", "Education fund: growing ✓", "Retirement: both on track ✓"] },
+      mid: { level: "Strong on paper — but reliant on both paychecks", desc: "You're doing well with two incomes, but your family's lifestyle may be leaning on both salaries with very little margin. Closing a few gaps protects everything you've built together.", pain: ["If one income suddenly stopped, your family's day-to-day could be disrupted fast.", "Coverage gaps — especially if only one of you is insured — leave the other carrying everything alone."], items: ["One-income survival: tight", "Earner protection: only partial", "Education fund: just started", "Retirement: uneven between you"] },
+      low: { level: "Two incomes, but very little safety net", desc: "Both of you work hard, but the family is running on both salaries with little set aside. One job loss or emergency could expose how thin the cushion really is.", pain: ["Your whole lifestyle depends on both incomes — losing one could trigger immediate strain.", "With little or no life coverage, your kids' future rests on hope rather than a plan.", "Without an education fund, college costs will hit all at once."], items: ["Emergency fund: not enough", "Earner protection: missing", "Education fund: not started", "Action needed: build your cushion"] },
+      vlow: { level: "Your family is exposed despite two incomes", desc: "Two paychecks can create a false sense of security. Right now, with no buffer and no protection, a single setback could put your children's stability at serious risk.", pain: ["Both salaries are fully spent — there's nothing to absorb a job loss or emergency.", "Neither earner is properly protected, so losing either income leaves the family unguarded.", "Every month without a plan is a month your kids are exposed."], items: ["Emergency fund: none", "Life protection: none", "Education fund: none", "First step: protect both earners"] }
+    },
+    dual_nokids: {
+      high: { level: "You're turning two incomes into real freedom", desc: "You're not just enjoying the dual-income life — you're building with it. Emergency fund, protection, and investments all working together. Let's keep that compounding.", pain: [], items: ["Emergency fund: solid ✓", "Both partners protected ✓", "Investments: growing ✓", "Retirement: on track ✓"] },
+      mid: { level: "Good income, good start — but lifestyle is creeping in", desc: "You're comfortable, and that's exactly the risk. Without intention, two incomes quietly get absorbed by lifestyle and the wealth-building window starts to close.", pain: ["The extra income is being enjoyed more than invested — and that gap compounds over time.", "If a major life change came — a move, a baby, a job loss — you'd be adjusting on the fly."], items: ["Emergency fund: light", "Wealth building: inconsistent", "Future planning: vague", "Retirement: under-funded"] },
+      low: { level: "Living large on two incomes — building little", desc: "The dual-income lifestyle feels great, but most of it is being spent rather than secured. Without a foundation underneath, all that income leaves nothing behind.", pain: ["Two salaries are disappearing into lifestyle with little to show for it.", "With no protection, one of you facing illness or job loss would shake everything.", "The longer wealth-building waits, the more compounding you give up for good."], items: ["Emergency fund: not enough", "Investments: not started", "Protection: missing", "Time to make your income work"] },
+      vlow: { level: "High income, zero foundation — that's a trap", desc: "Earning well and saving nothing is one of the most common money traps there is. The lifestyle feels secure right up until something breaks — and then there's nothing underneath.", pain: ["Both incomes are fully spent — a job loss would mean starting again from zero overnight.", "No protection means one accident or illness could undo years of comfortable living.", "Two incomes are a rare advantage — and right now it's slipping past you unused."], items: ["Emergency fund: none", "Investments: none", "Protection: none", "Start building today"] }
+    },
+    breadwinner: {
+      high: { level: "Your family is in good hands", desc: "You've built a strong foundation for the people depending on you. The next step is making sure everything stays optimized — especially as your family's needs grow.", pain: [], items: ["Emergency fund: household covered ✓", "Life protection: in place ✓", "Investments: growing ✓", "Retirement: planned ✓"] },
+      mid: { level: "There are gaps that need attention", desc: "You're providing for your family — but if something happened to you today, they may not be fully protected. A few intentional steps now can change everything.", pain: ["Your family's security depends on your income — and right now, one emergency could shake that foundation.", "Life coverage gaps mean your family could be left with nothing if the unexpected happens."], items: ["Emergency fund: partially covered", "Life protection: needs review", "Investments: getting started", "Retirement: needs a solid plan"] },
+      low: { level: "Your family is at risk right now", desc: "You're working hard for your family — but without a financial safety net, everything they depend on is vulnerable. One health crisis or job loss could change everything.", pain: ["If something happened to you tomorrow, your family would have no financial protection.", "Without an emergency fund, one unexpected expense could send the whole household into crisis.", "Your kids and spouse deserve more security than hope alone."], items: ["Emergency fund: not in place", "Life protection: none", "Investments: not started", "Action needed: start today"] },
+      vlow: { level: "This is urgent — your family needs a plan", desc: "You carry your family on your shoulders every day. But right now, if anything happened to you — they would have nothing. That's not a burden you should leave them with.", pain: ["You are the only safety net your family has — and right now, that net has holes.", "No life insurance means your family loses everything if they lose you.", "Every day without a plan is a day your family is unprotected."], items: ["Emergency fund: none", "Life protection: none", "Retirement plan: none", "First step: protect your family today"] }
+    },
+    single_parent: {
+      high: { level: "Your children are beautifully protected", desc: "Managing a family entirely on your own strength is incredible, and you have built a remarkable financial shield. Let's make sure it remains completely foolproof.", pain: [], items: ["Solo backup fund: fully secure ✓", "Legacy shield: children safeguarded ✓", "Education savings: on track ✓", "Retirement: prioritized ✓"] },
+      mid: { level: "You are doing great, but single-income gaps exist", desc: "You work tirelessly to provide stability. However, running a family solo means you carry 100% of the risk. Closing minor insurance or cash flow holes can guarantee their path.", pain: ["Since you are the single engine, a sudden drop in income places your kids' comfort on the line immediately.", "Educational horizons or legacy plans need solid structured security instead of open-ended hopes."], items: ["Solo backup fund: partial cushion", "Legacy shield: needs structural optimization", "Education plan: getting started", "Retirement fund: delayed"] },
+      low: { level: "The burden is high and risks are mounting", desc: "Being the absolute sole provider is immensely heavy. Right now, without a reinforced safety setup, a minor health issue or job pause could disrupt your household fast.", pain: ["If you are unable to work tomorrow, there is no second partner salary to carry your children.", "Lack of life protection means your kids are exposed to extreme structural hardship if you are gone.", "Your retirement is completely sacrificed, putting future reliance back onto your kids."], items: ["Solo backup fund: insufficient", "Legacy shield: not active", "School horizons: unaddressed", "Action priority: lock in security today"] },
+      vlow: { level: "Urgent action required — your household holds zero protection", desc: "You pour your absolute heart into your children, but you are carrying the entire weight over an open abyss. If you get hurt or lose footing, your children fall with you. We need to fix this.", pain: ["You are the lone safety net, and right now that net is empty.", "Zero active life coverage leaves your children's long-term housing and survival completely unprotected.", "An emergency today will trigger instant financial chaos for your family."], items: ["Solo backup fund: none", "Legacy shield: none", "Disability fallback: none", "Immediate step: map out child protection"] }
+    },
+    sandwich: {
+      high: { level: "You're managing both worlds well", desc: "Carrying two generations is one of the heaviest financial loads anyone can carry — and you're doing it while still building for yourself. Keep going.", pain: [], items: ["Emergency fund: in place ✓", "Family needs: covered ✓", "Personal investments: growing ✓", "Retirement: planned ✓"] },
+      mid: { level: "You're giving everything — but keeping nothing for yourself", desc: "You're stretched between two generations and there's very little left for you. If this continues, you risk becoming the next person who needs to be supported — with no one left to do it.", pain: ["You spend on your kids' future and your parents' needs — but who is building yours?", "If you got sick tomorrow, both generations depending on you would be in crisis.", "You're at risk of reaching retirement age with nothing — because you gave it all away."], items: ["Emergency fund: limited", "Personal investment: barely started", "Retirement plan: behind schedule", "You need a plan for YOU"] },
+      low: { level: "You're one emergency away from everything falling apart", desc: "You're doing the most selfless thing a person can do — caring for both your children and your parents. But your own financial foundation is dangerously thin.", pain: ["One hospitalization — yours, your kids', or your parents' — and there's nothing to absorb the blow.", "You're so focused on everyone else that your own retirement is being sacrificed quietly, every month.", "The sandwich generation trap: you end up needing support yourself because you spent everything supporting others."], items: ["Emergency fund: not enough", "Life protection: not in place", "Retirement savings: at risk", "Urgent: build a plan for yourself"] },
+      vlow: { level: "You're carrying too much with no safety net", desc: "You are the pillar for two generations — your children look up to you, your parents lean on you. But right now, if that pillar cracks, everything falls. You deserve a plan too.", pain: ["No emergency fund means one crisis wipes out everyone depending on you.", "No life coverage means your kids AND your parents lose their support system overnight.", "You have spent your whole life caring for others — but who is protecting you?"], items: ["Emergency fund: none", "Life protection: none", "Personal savings: none", "You matter too — start here"] }
+    },
+    solo: {
+      high: { level: "You're building something solid", desc: "You've taken ownership of your financial future — no safety net, no backup plan — just you making the right moves. Keep building.", pain: [], items: ["Emergency fund: covered ✓", "Health coverage: your own ✓", "Investments: growing ✓", "Retirement: on track ✓"] },
+      mid: { level: "You have a good start — but gaps remain", desc: "You're managing well for someone flying solo. But without anyone to fall back on, even small gaps in your financial plan can become big problems fast.", pain: ["There's no partner or family member to catch you if something goes wrong — your safety net is yours to build.", "An inconsistent investment habit now means a smaller cushion when you actually need it."], items: ["Emergency fund: partially built", "Health coverage: needs review", "Investments: inconsistent", "Retirement: needs attention"] },
+      low: { level: "Living solo means you can't afford not to plan", desc: "The freedom of solo living is real — but so is the risk. There's no one to split bills with in a crisis, no family member to borrow from, no backup plan. That's all on you.", pain: ["If you lost your income today, you'd be completely on your own — with no one to help cover the gap.", "Your HMO pays the hospital, not your rent and bills. A serious illness could eat through everything you've saved.", "The freedom you enjoy now could disappear fast without a financial foundation."], items: ["Emergency fund: not enough", "Health coverage: company HMO at most", "Investments: not started", "Time to build your own safety net"] },
+      vlow: { level: "Your future self is counting on you — starting today", desc: "Solo living feels free — until it doesn't. Without a financial plan, one unexpected event can undo everything. And with no one to fall back on, the stakes are higher than you think.", pain: ["No emergency fund means one job loss, one accident, one hospital bill — and you're starting from zero.", "No one is going to remind you to save. No one is going to bail you out. This is entirely up to you.", "The longer you wait, the harder it gets to build the life you actually want."], items: ["Emergency fund: none", "Health coverage: none of your own", "Investments: none", "Start now — future you will thank you"] }
+    },
+    provider: {
+      high: { level: "You're helping your family — and still building for you", desc: "Supporting your parents or siblings while protecting your own future is a real balancing act, and you're doing it well. Let's keep it that way as their needs grow.", pain: [], items: ["Own emergency fund: in place ✓", "Family health costs: planned ✓", "Own protection: in place ✓", "Own future: growing ✓"] },
+      mid: { level: "You're carrying them well — but your own cushion is thin", desc: "You show up for your family every month. But most of what you earn flows out, and very little stays to protect you or build your own future.", pain: ["One hospitalization — theirs or yours — could wipe out what you've saved.", "Every year you put your own future on hold, it gets harder to catch up."], items: ["Own emergency fund: partial", "Family health costs: partly covered", "Own protection: needs review", "Own future: on hold"] },
+      low: { level: "Your family depends on you — and no one is protecting you", desc: "You've become your family's safety net. But if you got sick or lost your income, there's nothing underneath — for you or for them.", pain: ["If you stopped earning, your parents or siblings would lose their support overnight.", "A hospital bill today would likely mean borrowing.", "Your own plans — a home, a family — keep getting pushed back."], items: ["Own emergency fund: not enough", "Family health costs: unplanned", "Own protection: missing", "Action needed: protect the provider"] },
+      vlow: { level: "You're everyone's safety net — with no net of your own", desc: "You give everything to your family, and that says a lot about you. But right now, one emergency could leave both you and the people you support with nothing.", pain: ["No fund of your own means every family emergency becomes a loan.", "No protection means if something happens to you, the support stops completely.", "You deserve to build a future too — not just fund everyone else's."], items: ["Own emergency fund: none", "Family health costs: none planned", "Own protection: none", "First step: protect yourself so you can keep helping"] }
+    },
+    legacy: {
+      high: { level: "Your retirement and legacy are in good shape", desc: "Your kids are on their own and your plan is working — retirement funded, health protected, and a clear plan for what you'll leave behind. Now it's about keeping it optimized.", pain: [], items: ["Retirement fund: on track ✓", "Health coverage: lasts past retirement ✓", "Legacy plan: in place ✓", "Money: still working ✓"] },
+      mid: { level: "You're close — but a few gaps could cost your kids", desc: "You've built a lot. But some pieces — health coverage after retirement, or how your assets pass on — aren't locked in yet, and those gaps tend to land on your children.", pain: ["Company HMOs end when work ends — and health costs rise just as income stops.", "Without a clear plan, what you leave behind can get stuck or shrink before it reaches your family."], items: ["Retirement fund: behind", "Health coverage: may end at retirement", "Legacy plan: incomplete", "Money: mostly idle"] },
+      low: { level: "Your kids may end up supporting you", desc: "You raised them to stand on their own — but without a funded retirement and lasting health coverage, they may need to support you sooner than anyone planned.", pain: ["Your savings may not last long once your salary stops.", "A serious illness after retirement would likely be paid by your kids.", "Nothing is set yet for how your assets pass to your family."], items: ["Retirement fund: not enough", "Health coverage: limited", "Legacy plan: none yet", "Action needed: secure your retirement"] },
+      vlow: { level: "It's not too late — but this needs attention now", desc: "Your kids are grown, and right now your retirement and health depend almost entirely on them. The good news: there's still time to change that, if you start now.", pain: ["Without a retirement fund, your kids become your retirement plan.", "Without lasting health coverage, one illness could cost them their own savings.", "Every year of waiting makes it harder to build what you need."], items: ["Retirement fund: none", "Health coverage: none or ending", "Legacy plan: none", "First step: protect your retirement"] }
+    }
+  };
+  var TIER_STYLE = {
+    high: { c: 'var(--good)', l: 'var(--goodl)' },
+    mid:  { c: 'var(--okay)', l: 'var(--okayl)' },
+    low:  { c: 'var(--low)', l: 'var(--lowl)' },
+    vlow: { c: 'var(--urgent)', l: 'var(--urgentl)' }
+  };
+  /* ================= Gap → Plan Finder goal =================
+     Each question measures one gap. The weakest answers decide which
+     Plan Finder goals (plans.donnanuqui.com) are pre-selected, so the
+     finder shows the best-matching product first, priced at their age. */
+  var DIMS = {
+    dual_kids:     ['income', 'spend', 'life', 'edu', 'income', 'retire'],
+    dual_nokids:   ['emergency', 'invest', 'life', 'invest', 'emergency', 'retire'],
+    breadwinner:   ['emergency', 'income', 'life', 'invest', 'retire', 'life'],
+    single_parent: ['emergency', 'income', 'life', 'edu', 'health', 'retire'],
+    sandwich:      ['emergency', 'spend', 'life', 'invest', 'retire', 'health'],
+    solo:          ['emergency', 'health', 'health', 'invest', 'retire', 'spend'],
+    provider:      ['life', 'emergency', 'parents', 'life', 'savings', 'spend'],
+    legacy:        ['retire', 'retire', 'health', 'health', 'legacy', 'invest']
+  };
+  var DIM_GOAL = { life: 'family', income: 'family', health: 'health', invest: 'grow', retire: 'retire', edu: 'kids',
+                   emergency: 'goal', spend: 'goal', savings: 'goal', parents: 'parents', legacy: 'legacy' };
+  var DIM_OVERRIDE = {};
+
+  /* Donna's pick per life stage. "Just me" → Sun Fit and Well Advantage 10, unless they
+     already have their own health plan (Q1 = A) or are past its entry age (max 60). */
+  var FEATURED = {
+    solo: { plan: 'fit-and-well-adv-10', name: 'Sun Fit and Well <em>Advantage 10</em>', goal: 'health', maxAge: 60,
+            hasIt: function () { return ans[1] === 0; },
+            why: 'Your HMO pays the hospital. This pays <b>you</b> cash from the moment you\'re diagnosed, through treatment and recovery, so a serious illness doesn\'t wipe out your savings.' }
+  };
+  function featuredPick() {
+    var f = FEATURED[sit];
+    if (!f || f.hasIt() || (age !== null && age > f.maxAge)) return null;
+    return f;
+  }
+  // When two gaps are equally big, this order decides (most urgent first)
+  var GOAL_PRIORITY = {
+    dual_kids:     ['family', 'kids', 'health', 'retire', 'grow', 'goal'],
+    dual_nokids:   ['family', 'grow', 'retire', 'goal', 'health'],
+    breadwinner:   ['family', 'health', 'retire', 'grow', 'goal'],
+    single_parent: ['family', 'kids', 'health', 'retire', 'goal'],
+    sandwich:      ['family', 'health', 'retire', 'grow', 'goal'],
+    solo:          ['health', 'grow', 'retire', 'goal'],
+    provider:      ['family', 'parents', 'health', 'goal', 'grow'],
+    legacy:        ['retire', 'health', 'legacy', 'grow']
+  };
+  var GOAL_INFO = {
+    family:  { gap: 'protecting your family',      h: 'See the plans that <em>protect your family</em>' },
+    health:  { gap: 'big hospital bills',          h: 'See the plans that <em>cover big hospital bills</em>' },
+    kids:    { gap: 'your kids\' schooling',       h: 'See the plans that <em>fund your kids\' schooling</em>' },
+    retire:  { gap: 'income when you retire',      h: 'See the plans that <em>build your retirement income</em>' },
+    goal:    { gap: 'savings you can count on',    h: 'See the plans that <em>build your savings</em>' },
+    grow:    { gap: 'growing your money',          h: 'See the plans that <em>grow your money</em>' },
+    parents: { gap: 'protecting your parents',     h: 'See the plans that <em>protect your parents</em>' },
+    legacy:  { gap: 'passing on your wealth',      h: 'See the plans that <em>pass on your wealth</em>' }
+  };
+
+  // Only the single biggest gap goes to the Plan Finder, so the finder shows
+  // exactly what the result page says (e.g. "protecting your family").
+  function gapGoals() {
+    var score = {}, over = DIM_OVERRIDE[sit] || {};
+    ans.forEach(function (a, i) {
+      var dim = DIMS[sit][i], g = over[dim] || DIM_GOAL[dim];
+      score[g] = Math.max(score[g] || 0, a === null ? 0 : a);
+    });
+    var pr = GOAL_PRIORITY[sit];
+    var rank = function (g) { var i = pr.indexOf(g); return i === -1 ? 99 : i; };
+    var list = Object.keys(score).sort(function (x, y) { return (score[y] - score[x]) || (rank(x) - rank(y)); });
+    return [score[list[0]] === 0 ? pr[0] : list[0]];
+  }
+  var MSG_CTA = {
+    dual_kids:     ['Optimize our family plan', 'Close our gaps — free consultation', 'Protect our family — let\'s talk', 'Get a plan for our family'],
+    dual_nokids:   ['Grow our money further', 'Make our income work harder', 'Build our foundation', 'Start our financial plan'],
+    breadwinner:   ['Review my family\'s coverage', 'Fill the gaps — free consultation', 'Protect my family — let\'s talk', 'Get a plan for my family'],
+    single_parent: ['Optimize my child\'s safety net', 'Secure my gaps — free consultation', 'Protect my kids — let\'s build a plan', 'Get a plan for my family'],
+    sandwich:      ['Optimize my plan — free review', 'Build a plan for me too', 'Start my personal plan', 'Get my own financial plan'],
+    solo:          ['Grow my money further', 'Close my financial gaps', 'Build my safety net', 'Start my financial plan'],
+    provider:      ['Review my plan — free', 'Build a cushion for me too', 'Protect me and my family', 'Get my own financial plan'],
+    legacy:        ['Review my retirement plan', 'Close my retirement gaps', 'Secure my retirement — let\'s talk', 'Start my retirement plan']
+  };
+  var SCORES = [3, 2, 1, 0];
+
+  /* ================= State + navigation ================= */
+  var sit = null, life = null, pendingSet = null, age = null, cur = 0, ans = [];
+
+  // Each screen is a browser-history entry, so the phone's back button
+  // steps back through the journey instead of leaving the page.
+  function show(id, fromHistory) {
+    if ((id === 's-quiz' || id === 's-result') && !sit) id = 's-persona';
+    if (id === 's-status' && !life) id = 's-persona';
+    if (id === 's-age' && !pendingSet) id = 's-persona';
+    document.querySelectorAll('.st-screen').forEach(function (s) { s.classList.remove('on'); });
+    document.getElementById(id).classList.add('on');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (fromHistory) return;
+    var state = history.state;
+    if (!state || !state.screen) history.replaceState({ screen: id }, '');
+    else if (state.screen !== id) history.pushState({ screen: id }, '');
+  }
+  window.addEventListener('popstate', function (e) {
+    show(e.state && e.state.screen ? e.state.screen : 's-fork', true);
+  });
+
+  function goPath(path, fromLink) {
+    track('start_path_selected', { path: path, via: fromLink ? 'link' : 'fork' });
+    if (path === 'plans') {
+      location.href = withTracking(PLANS_URL, { from: 'start' });
+      return;
+    }
+    track('quiz_started', {});
+    show('s-persona');
+  }
+
+  function iconSvg(name) {
+    return '<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + ICONS[name] + '</svg></span>';
+  }
+
+  function renderPersonas() {
+    document.getElementById('persona-grid').innerHTML = Object.keys(LIFE).map(function (k) {
+      var l = LIFE[k];
+      return '<button class="st-path ' + l.cls + '" onclick="pickLife(\'' + k + '\')">'
+        + iconSvg(l.icon) + '<span class="t">' + l.t + '</span><span class="d">' + l.d + '</span></button>';
+    }).join('');
+  }
+
+  // Step 1: life stage. Ask "who earns" only when it changes the questions.
+  function pickLife(k) {
+    life = k;
+    track('quiz_life_stage_selected', { life_stage: k });
+    var l = LIFE[k];
+    if (!l.status) { askAge(l.set); return; }
+    document.getElementById('status-grid').innerHTML = l.status.map(function (s) {
+      return '<button class="st-path ' + l.cls + '" onclick="pickStatus(\'' + s.set + '\')">'
+        + '<span class="t">' + s.t + '</span><span class="d">' + s.d + '</span></button>';
+    }).join('');
+    show('s-status');
+  }
+
+  // Step 2: who earns → picks the question set
+  function pickStatus(set) {
+    track('quiz_status_selected', { life_stage: life, status: set });
+    askAge(set);
+  }
+
+  // Step 3: age (prices the best match in the Plan Finder)
+  function askAge(set) {
+    pendingSet = set;
+    document.getElementById('age-err').textContent = '';
+    show('s-age');
+    setTimeout(function () { document.getElementById('age-in').focus(); }, 150);
+  }
+  function submitAge() {
+    var v = parseInt(document.getElementById('age-in').value, 10);
+    var err = document.getElementById('age-err');
+    if (isNaN(v) || v < 18 || v > 100) { err.textContent = 'Please enter your age, from 18 to 100.'; return; }
+    err.textContent = '';
+    age = v;
+    track('quiz_age_entered', { age: v, life_stage: life });
+    startQuiz(pendingSet);
+  }
+  function ageBack() { show(LIFE[life] && LIFE[life].status ? 's-status' : 's-persona'); }
+  document.getElementById('age-in').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); submitAge(); }
+  });
+
+  function startQuiz(set) {
+    if (sit !== set) { ans = new Array(QS[set].length).fill(null); cur = 0; }
+    sit = set;
+    track('quiz_situation_selected', { situation: set, life_stage: life });
+    var chip = document.getElementById('q-chip');
+    chip.className = 'st-chip ' + LIFE[life].cls;
+    chip.textContent = PERSONAS[set].label;
+    show('s-quiz');
+    renderQ();
+  }
+
+  function renderQ() {
+    var qs = QS[sit], q = qs[cur], pct = Math.round(cur / qs.length * 100);
+    document.getElementById('q-count').textContent = 'Question ' + (cur + 1) + ' of ' + qs.length;
+    document.getElementById('q-pct').textContent = pct + '%';
+    document.getElementById('q-fill').style.width = pct + '%';
+    document.getElementById('q-text').textContent = q.text;
+    var box = document.getElementById('q-opts'); box.innerHTML = '';
+    q.options.forEach(function (o, i) {
+      var b = document.createElement('button');
+      b.className = 'st-opt' + (ans[cur] === i ? ' sel' : '');
+      b.innerHTML = '<span class="k">' + (ans[cur] === i ? '✓' : String.fromCharCode(65 + i)) + '</span><span></span>';
+      b.lastChild.textContent = o;
+      b.onclick = function () { ans[cur] = i; renderQ(); };
+      box.appendChild(b);
+    });
+    document.getElementById('q-prev').textContent = cur === 0 ? '← Change' : '← Back';
+    var next = document.getElementById('q-next');
+    next.disabled = ans[cur] === null;
+    next.textContent = cur === qs.length - 1 ? 'See my result →' : 'Next →';
+  }
+
+  function nextQ() {
+    track('quiz_question_reached', { situation: sit, question_number: cur + 1, total_questions: QS[sit].length });
+    if (cur < QS[sit].length - 1) { cur++; renderQ(); } else showResult();
+  }
+  function prevQ() {
+    if (cur > 0) { cur--; renderQ(); return; }
+    show('s-age');
+  }
+
+  function showResult(restored) {
+    var total = ans.reduce(function (s, a) { return s + (a !== null ? SCORES[a] : 0); }, 0);
+    var pct = Math.round(total / (QS[sit].length * 3) * 100);
+    var tier = pct >= 75 ? 'high' : pct >= 50 ? 'mid' : pct >= 25 ? 'low' : 'vlow';
+    var tierIdx = { high: 0, mid: 1, low: 2, vlow: 3 }[tier];
+    var d = RESULTS[sit][tier], p = PERSONAS[sit], ts = TIER_STYLE[tier], lc = LIFE[life].cls;
+
+    var feat = featuredPick(), goals = feat ? [feat.goal] : gapGoals(), gi = GOAL_INFO[goals[0]];
+    if (!restored) track('quiz_completed', { situation: sit, life_stage: life, persona: p.slug, tier: tier, score: pct, age: age, gap: goals.join(',') });
+    // Lets the Back button from the Plan Finder land on this result again
+    try { sessionStorage.setItem('frcState', JSON.stringify({ sit: sit, life: life, age: age, ans: ans })); } catch (e) {}
+
+    // Keep the full result so the plans step / Donna can see it later
+    try {
+      localStorage.setItem('frcQuizResult', JSON.stringify({
+        situation: sit, situationLabel: p.label, lifeStage: life, persona: p.slug, tier: tier, score: pct, age: age, gaps: goals,
+        answers: QS[sit].map(function (q, i) { return { q: q.text, a: ans[i] !== null ? q.options[ans[i]] : null }; }),
+        savedAt: new Date().toISOString()
+      }));
+    } catch (e) {}
+
+    var handoff = { from: 'check', age: age, goals: goals.join(','), stage: life, persona: p.slug, tier: tier, score: pct };
+    if (feat) handoff.top = feat.plan;
+    var plansLink = withTracking(PLANS_URL, handoff);
+    var nextHead = feat
+      ? '<p class="pf-eyebrow">Where I\'d start for you</p><h2 class="st-h2">' + feat.name + '</h2>'
+        + '<p class="sub">' + feat.why + ' See your estimated monthly price at age ' + age + ', next to the other health plans.</p>'
+      : '<p class="pf-eyebrow">Your biggest gap: ' + gi.gap + '</p><h2 class="st-h2">' + gi.h + '</h2>'
+        + '<p class="sub">I\'ll show you the plans that close this gap, best match first, with your estimated monthly price at age ' + age + '. Free, no sign-up.</p>';
+    var pain = d.pain.length
+      ? '<div class="st-pain" style="background:' + ts.l + ';border-color:' + ts.c + ';color:' + ts.c + '"><p class="st-label" style="padding:0">What this means for you</p>'
+        + d.pain.map(function (x) { return '<p>' + x + '</p>'; }).join('') + '</div>'
+      : '';
+
+    document.getElementById('s-result').innerHTML =
+        '<p class="pf-eyebrow">Your financial readiness result</p>'
+      + '<div class="st-result-head">'
+      +   '<div class="st-score" style="background:' + ts.l + ';color:' + ts.c + '"><b>' + pct + '%</b><small>Readiness</small></div>'
+      +   '<div><span class="st-chip ' + lc + '" style="margin-bottom:10px">' + p.label + '</span>'
+      +   '<h2 class="st-h2" style="margin:0">' + d.level + '</h2></div>'
+      + '</div>'
+      + '<p class="st-desc">' + d.desc + '</p>'
+      + pain
+      + '<div class="st-snap"><p class="st-label" style="color:var(--muted)">Your snapshot</p>'
+      +   d.items.map(function (x) { return '<div><i style="background:' + ts.c + '"></i>' + x + '</div>'; }).join('')
+      + '</div>'
+      + '<div class="st-next">'
+      +   nextHead
+      +   '<a class="pf-btn block" href="' + plansLink + '" onclick="track(\'quiz_result_cta_click\',{cta:\'plans\',situation:sit,tier:\'' + tier + '\',gap:\'' + goals.join(',') + '\',featured:\'' + (feat ? feat.plan : '') + '\'})">' + (feat ? 'See my price →' : 'Show me my plans →') + '</a>'
+      + '</div>'
+      + '<a class="pf-btn ghost block" href="' + MESSENGER_URL + '" target="_blank" rel="noopener" onclick="track(\'quiz_result_cta_click\',{cta:\'messenger\',situation:sit,tier:\'' + tier + '\'})">' + MSG_CTA[sit][tierIdx] + ' →</a>'
+      + '<p class="st-note">Prefer to talk first? Message me — no pressure, just a real conversation.</p>'
+      + '<div class="st-contact"><p class="st-label" style="color:var(--muted)">Get in touch with Donna</p><div class="st-contact-row">'
+      +   '<a href="https://www.facebook.com/financial.advisor.donna.n" target="_blank" rel="noopener" onclick="track(\'contact_click\',{channel:\'facebook\'})"><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.884v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>financial.advisor.donna.n</a>'
+      +   '<a href="tel:+639623858115" onclick="track(\'contact_click\',{channel:\'phone\'})"><svg viewBox="0 0 24 24" fill="none" stroke="#8B6F3F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.38 2.18 2 2 0 012.36 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>0962 385 8115</a>'
+      +   '<a href="mailto:donnadel.g.nuqui@sunlife.com.ph" onclick="track(\'contact_click\',{channel:\'email\'})"><svg viewBox="0 0 24 24" fill="none" stroke="#16150F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email me</a>'
+      + '</div></div>'
+      + '<p class="st-restart"><button class="st-link" onclick="restart(\'s-persona\')">Retake the check</button> &nbsp;·&nbsp; <button class="st-link" onclick="restart(\'s-fork\')">Back to start</button></p>';
+
+    show('s-result');
+  }
+
+  function restart(to) {
+    sit = null; life = null; pendingSet = null; cur = 0; ans = [];
+    track('quiz_restarted', { to: to });
+    show(to);
+  }
+
+  /* ================= Boot ================= */
+  renderPersonas();
+  // Back from the Plan Finder: if the browser reloaded this page, rebuild the result
+  function restoreResult() {
+    var st = history.state, saved = null;
+    if (!st || st.screen !== 's-result') return false;
+    try { saved = JSON.parse(sessionStorage.getItem('frcState') || 'null'); } catch (e) {}
+    if (!saved || !QS[saved.sit] || !LIFE[saved.life]) return false;
+    sit = saved.sit; life = saved.life; age = saved.age; ans = saved.ans; pendingSet = saved.sit;
+    showResult(true);
+    return true;
+  }
+  var pathParam = incoming.get('path');
+  if (restoreResult()) { /* back on the result */ }
+  else if (pathParam === 'plans') goPath('plans', true);
+  else if (pathParam === 'check') { show('s-fork'); goPath('check', true); }
+  else { show('s-fork'); track('start_fork_viewed', {}); }
+</script>
+</body>
+</html>
