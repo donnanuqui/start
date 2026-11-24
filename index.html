@@ -219,6 +219,27 @@
   .st-contact svg { width: 17px; height: 17px; flex-shrink: 0; }
   .st-restart { margin: 26px 0 0; font-size: 13px; color: var(--muted); text-align: center; }
 
+  /* ---------- Email me my results ---------- */
+  .st-lead { background: var(--card); border: 1px solid var(--line); border-top: 3px solid var(--gold); padding: 26px 24px; margin-bottom: 18px; }
+  .st-lead .st-h2 { font-size: clamp(24px, 3.4vw, 30px); margin-bottom: 8px; }
+  .st-lead p.sub { font-size: 14px; color: var(--muted); margin-bottom: 18px; }
+  .st-lead form { display: flex; flex-direction: column; gap: 12px; }
+  .st-lead .row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .st-lead label.f { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .st-lead .lt { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .st-lead .lt i { font-style: normal; text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .st-lead input[type=text], .st-lead input[type=email], .st-lead input[type=tel] {
+    width: 100%; height: 48px; font-family: var(--sans); font-size: 16px; color: var(--ink);
+    background: var(--bg); border: 1px solid var(--line); padding: 0 14px; border-radius: 0; -webkit-appearance: none; appearance: none;
+  }
+  .st-lead input:focus { outline: 2px solid var(--gold); outline-offset: -1px; }
+  .st-consent { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--muted); cursor: pointer; line-height: 1.5; }
+  .st-consent input { width: 18px; height: 18px; flex: 0 0 18px; margin-top: 2px; accent-color: var(--goldd); }
+  .st-lead .err { color: #B3412E; font-size: 14px; font-weight: 600; min-height: 1em; }
+  .st-lead .fine { font-size: 12px; color: var(--muted); }
+  .st-lead-done .st-h2 em { color: var(--goldd); }
+  .st-lead-done .pf-btn { margin-top: 6px; }
+
   .pf-foot { max-width: 760px; margin: 56px auto 0; padding-top: 22px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); line-height: 1.6; }
 
   @media (max-width: 760px) {
@@ -232,6 +253,8 @@
     .pf-nav-links a { display: block; padding: 10px 0; }
     .st-card { padding: 26px 18px; }
     .st-next { padding: 26px 20px; }
+    .st-lead { padding: 22px 18px; }
+    .st-lead .row { grid-template-columns: minmax(0, 1fr); }
   }
 </style>
 </head>
@@ -245,7 +268,7 @@
       <li><a href="https://me.donnanuqui.com/#about">Meet Donna</a></li>
       <li><a href="https://me.donnanuqui.com/#services">Services</a></li>
       <li><a href="https://me.donnanuqui.com/#tools">Tools</a></li>
-      <li><a href="https://plans.donnanuqui.com">Plans</a></li>
+      <li><a href="https://plans.donnanuqui.com" id="nav-plans">Plans</a></li>
       <li><a href="https://me.donnanuqui.com/#contact">Contact</a></li>
     </ul>
   </nav>
@@ -267,7 +290,7 @@
         <button class="st-path p-family" onclick="goPath('plans')">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></span>
           <span class="t">I know I need it, <em>but where do I start?</em></span>
-          <span class="d">Tell me your age, health and budget — see the plans that actually fit you, with estimated premiums.</span>
+          <span class="d">Tell me your age and what's on your mind — see the plans that actually fit you, with estimated monthly prices.</span>
           <span class="go">Show me my plans →</span>
         </button>
       </div>
@@ -336,6 +359,14 @@
   /* ================= Config ================= */
   var PLANS_URL = 'https://plans.donnanuqui.com/';
   var MESSENGER_URL = 'https://m.me/financial.advisor.donna.n';
+  // Same Google Sheet script as the proposal forms on plans.donnanuqui.com
+  var LEADS_URL = 'https://script.google.com/macros/s/AKfycbzVcrMEVF-Hj0M3qc2uzcP6_yYv7hJSTJ2ao3e04NVgVIRq7Ol-QDamBgCK-mr6EtMR7g/exec';
+
+  function esc(t) {
+    return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
+  }
+  function plainText(html) { return String(html || '').replace(/<[^>]+>/g, ''); }
+  function messengerLink(msg) { return MESSENGER_URL + '?text=' + encodeURIComponent(msg); }
 
   /* ================= Tracking (GA4) ================= */
   function track(name, params) {
@@ -352,6 +383,12 @@
     Object.keys(extra || {}).forEach(function (k) { u.searchParams.set(k, extra[k]); });
     return u.toString();
   }
+  // Where this visitor came from, written to the lead's "source" column (same format as the plans forms)
+  var SOURCE = (function () {
+    var label = incoming.get('utm_source') || incoming.get('src') || (incoming.get('fbclid') ? 'Facebook' : '');
+    if (!label) { try { if (document.referrer) label = new URL(document.referrer).hostname; } catch (e) {} }
+    return (label || 'Direct') + (incoming.get('utm_campaign') ? ' · ' + incoming.get('utm_campaign') : '');
+  })();
 
   /* ================= Personas ================= */
   var ICONS = {
@@ -751,6 +788,29 @@
         + '<p class="sub">' + feat.why + ' See your estimated monthly price at age ' + age + ', next to the other health plans.</p>'
       : '<p class="pf-eyebrow">Your biggest gap: ' + gi.gap + '</p><h2 class="st-h2">' + gi.h + '</h2>'
         + '<p class="sub">I\'ll show you the plans that close this gap, best match first, with your estimated monthly price at age ' + age + '. Free, no sign-up.</p>';
+    // Kept for the "Email me my results" form
+    var gapText = feat ? 'protecting my savings (' + plainText(feat.name) + ')' : gi.gap.replace(/\byour\b/g, 'my');
+    lastResult = { label: p.label, pct: pct, tier: tier, gap: gapText, plan: feat ? plainText(feat.name) : 'Not sure yet' };
+    var chatMsg = 'Hi Donna! I just took your readiness check (' + p.label + ', ' + pct + '%). My biggest gap is ' + gapText + '. Can we talk?';
+    var leadPlan = feat ? plainText(feat.name) : 'the plan that closes your biggest gap';
+    var leadBox = sentLead
+      ? leadDoneHtml()
+      : '<div class="st-lead" id="st-lead">'
+        + '<p class="pf-eyebrow">Free, no obligation</p>'
+        + '<h2 class="st-h2">Want this sent to you, <em>with your exact numbers?</em></h2>'
+        + '<p class="sub">The prices on the next page are estimates. I\'ll email your result plus a proposal for ' + esc(leadPlan) + ' at age ' + age + ', with your exact amount, within 24 hours.</p>'
+        + '<form id="st-lead-form" novalidate onsubmit="return sendResults(event)">'
+        +   '<label class="f"><span class="lt">Your name</span><input type="text" id="ld-name" autocomplete="name" placeholder="e.g. Maria Santos"></label>'
+        +   '<div class="row">'
+        +     '<label class="f"><span class="lt">Email</span><input type="email" id="ld-email" autocomplete="email" inputmode="email" placeholder="you@email.com"></label>'
+        +     '<label class="f"><span class="lt">Mobile <i>(optional)</i></span><input type="tel" id="ld-mobile" autocomplete="tel" inputmode="tel" placeholder="09XX XXX XXXX"></label>'
+        +   '</div>'
+        +   '<label class="st-consent"><input type="checkbox" id="ld-consent"> <span>I agree to let Donna Nuqui, a licensed financial advisor, email me my results and proposal. My details won\'t be shared with anyone else.</span></label>'
+        +   '<p class="err" id="ld-err" role="alert"></p>'
+        +   '<button type="submit" class="pf-btn block">Email me my results →</button>'
+        +   '<p class="fine">No calls unless you ask.</p>'
+        + '</form></div>';
+
     var pain = d.pain.length
       ? '<div class="st-pain" style="background:' + ts.l + ';border-color:' + ts.c + ';color:' + ts.c + '"><p class="st-label" style="padding:0">What this means for you</p>'
         + d.pain.map(function (x) { return '<p>' + x + '</p>'; }).join('') + '</div>'
@@ -772,7 +832,8 @@
       +   nextHead
       +   '<a class="pf-btn block" href="' + plansLink + '" onclick="track(\'quiz_result_cta_click\',{cta:\'plans\',situation:sit,tier:\'' + tier + '\',gap:\'' + goals.join(',') + '\',featured:\'' + (feat ? feat.plan : '') + '\'})">' + (feat ? 'See my price →' : 'Show me my plans →') + '</a>'
       + '</div>'
-      + '<a class="pf-btn ghost block" href="' + MESSENGER_URL + '" target="_blank" rel="noopener" onclick="track(\'quiz_result_cta_click\',{cta:\'messenger\',situation:sit,tier:\'' + tier + '\'})">' + MSG_CTA[sit][tierIdx] + ' →</a>'
+      + leadBox
+      + '<a class="pf-btn ghost block" href="' + messengerLink(chatMsg) + '" target="_blank" rel="noopener" onclick="track(\'quiz_result_cta_click\',{cta:\'messenger\',situation:sit,tier:\'' + tier + '\'})">' + MSG_CTA[sit][tierIdx] + ' →</a>'
       + '<p class="st-note">Prefer to talk first? Message me — no pressure, just a real conversation.</p>'
       + '<div class="st-contact"><p class="st-label" style="color:var(--muted)">Get in touch with Donna</p><div class="st-contact-row">'
       +   '<a href="https://www.facebook.com/financial.advisor.donna.n" target="_blank" rel="noopener" onclick="track(\'contact_click\',{channel:\'facebook\'})"><svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.884v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>financial.advisor.donna.n</a>'
@@ -784,7 +845,68 @@
     show('s-result');
   }
 
+  /* ================= Email me my results ================= */
+  var lastResult = null, sentLead = null, leadFormStarted = false;
+
+  function leadDoneHtml() {
+    var first = sentLead.name.split(' ')[0];
+    var msg = 'Hi Donna! I\'m ' + sentLead.name + '. I just sent my readiness check result (' + lastResult.label + ', ' + lastResult.pct + '%) from your site.';
+    return '<div class="st-lead st-lead-done" id="st-lead">'
+      + '<p class="pf-eyebrow">Got it</p>'
+      + '<h2 class="st-h2">Salamat, ' + esc(first) + '! <em>Your results are on the way.</em></h2>'
+      + '<p class="sub">I\'ll email your result and proposal to <b>' + esc(sentLead.email) + '</b> within 24 hours. Check your spam folder too, just in case.</p>'
+      + '<a class="pf-btn ghost" href="' + messengerLink(msg) + '" target="_blank" rel="noopener" onclick="track(\'contact_click\',{channel:\'messenger_after_lead\'})">Want it faster? Message me →</a>'
+      + '</div>';
+  }
+
+  function sendResults(e) {
+    if (e) e.preventDefault();
+    var name = document.getElementById('ld-name').value.trim();
+    var email = document.getElementById('ld-email').value.trim();
+    var mobile = document.getElementById('ld-mobile').value.trim();
+    var consent = document.getElementById('ld-consent').checked;
+    var err = document.getElementById('ld-err');
+    var problem = '';
+    if (!name) problem = 'Please enter your name.';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) problem = 'Please enter a valid email so I can send your results.';
+    else if (mobile && !/^(\+?63|0)?9\d{9}$/.test(mobile.replace(/[\s\-()]/g, ''))) problem = 'Please check your mobile number, like 0917 123 4567, or leave it blank.';
+    else if (!consent) problem = 'Please tick the box so I can email you.';
+    if (problem) { err.textContent = problem; return false; }
+    err.textContent = '';
+
+    // Same columns as the proposal forms, so it lands in the same Sheet
+    var data = {
+      name: name, email: email, mobile: mobile, birthday: '', age: String(age), gender: '',
+      page: 'start-check', plan: lastResult.plan,
+      goals: lastResult.label + ' | Readiness ' + lastResult.pct + '% (' + lastResult.tier + ') | Biggest gap: ' + lastResult.gap,
+      forParent: (life === 'sandwich' || life === 'support') ? 'supports parents' : 'no',
+      followedPage: 'not yet', coverage: 'Not sure yet', budget: '', estimate: '',
+      source: SOURCE + ' · Readiness check'
+    };
+    var q = [];
+    Object.keys(data).forEach(function (k) { q.push(encodeURIComponent(k) + '=' + encodeURIComponent(data[k])); });
+    try { var img = new Image(); img.src = LEADS_URL + '?' + q.join('&') + '&t=' + Date.now(); } catch (x) {}
+
+    track('quiz_results_sent', { situation: sit, tier: lastResult.tier, score: lastResult.pct, has_mobile: mobile ? 'yes' : 'no' });
+    track('generate_lead', { method: 'send_results', funnel: 'readiness_check' });
+
+    sentLead = { name: name, email: email };
+    document.getElementById('st-lead').outerHTML = leadDoneHtml();
+    return false;
+  }
+
+  // First tap in the form, to see who starts but doesn't send
+  document.addEventListener('focusin', function (e) {
+    if (leadFormStarted || !e.target.closest || !e.target.closest('#st-lead-form')) return;
+    leadFormStarted = true;
+    track('quiz_lead_form_start', { situation: sit });
+  });
+  document.addEventListener('input', function (e) {
+    if (e.target.closest && e.target.closest('#st-lead-form')) document.getElementById('ld-err').textContent = '';
+  });
+
   function restart(to) {
+    sentLead = null; leadFormStarted = false;
     sit = null; life = null; pendingSet = null; cur = 0; ans = [];
     track('quiz_restarted', { to: to });
     show(to);
@@ -792,6 +914,8 @@
 
   /* ================= Boot ================= */
   renderPersonas();
+  // Top-menu Plans link keeps the post's src too
+  document.getElementById('nav-plans').href = withTracking(PLANS_URL, { from: 'start_nav' });
   // Back from the Plan Finder: if the browser reloaded this page, rebuild the result
   function restoreResult() {
     var st = history.state, saved = null;
